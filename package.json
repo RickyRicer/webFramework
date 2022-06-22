@@ -1,0 +1,21 @@
+{
+  "name": "tsweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:db": "json-server -w db.json",
+    "start:parcel": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickyRicer/webFramework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RickyRicer/webFramework/issues"
+  },
+  "homepage": "https://github.com/RickyRicer/webFramework#readme"
+}
