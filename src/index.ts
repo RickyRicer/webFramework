@@ -8,4 +8,4 @@ user.on('change', () => {
   console.log('user was changed');
 });
 
-user.set({ name: 'New Name' });
+user.fetch();
