@@ -8,5 +8,4 @@ user.on('save', () => {
   console.log(user);
 });
 
-// let's rewrite this
 user.save();
