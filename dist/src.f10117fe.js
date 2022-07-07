@@ -4784,7 +4784,6 @@ var User_1 = require("./models/User");
 var user = User_1.User.buildUser({
   id: 1
 });
-console.log(user.get('name'));
 user.on('change', function () {
   console.log(user);
 });
