@@ -129,18 +129,32 @@ var UserForm =
 /** @class */
 function () {
   function UserForm(parent, model) {
+    var _this = this;
+
     this.parent = parent;
     this.model = model;
+
+    this.onSetAgeClick = function () {
+      _this.model.setRandomAge();
+    };
+
+    this.model.on('change', function () {
+      _this.bindModel();
+    });
   }
+
+  UserForm.prototype.bindModel = function () {
+    var _this = this;
+
+    this.model.on('change', function () {
+      _this.render();
+    });
+  };
 
   UserForm.prototype.eventsMap = function () {
     return {
       'click:.set-age': this.onSetAgeClick
     };
-  };
-
-  UserForm.prototype.onSetAgeClick = function () {
-    console.log('Set random age was clicked');
   };
 
   UserForm.prototype.template = function () {
@@ -168,6 +182,7 @@ function () {
   };
 
   UserForm.prototype.render = function () {
+    this.parent.innerHTML = '';
     var templateElement = document.createElement('template');
     templateElement.innerHTML = this.template();
     this.bindEvents(templateElement.content);
@@ -4832,6 +4847,13 @@ function (_super) {
   User.buildUserCollection = function () {
     return new Collection(rootUrl, function (json) {
       return User.buildUser(json);
+    });
+  };
+
+  User.prototype.setRandomAge = function () {
+    var age = Math.round(Math.random() * 100);
+    this.set({
+      age: age
     });
   };
 
