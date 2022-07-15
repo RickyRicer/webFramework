@@ -151,12 +151,18 @@ var View = /*#__PURE__*/function () {
 
     this.parent = parent;
     this.model = model;
+    this.regions = {};
     this.model.on('change', function () {
       _this.bindModel();
     });
   }
 
   _createClass(View, [{
+    key: "regionsMap",
+    value: function regionsMap() {
+      return {};
+    }
+  }, {
     key: "eventsMap",
     value: function eventsMap() {
       return {};
@@ -191,6 +197,24 @@ var View = /*#__PURE__*/function () {
       for (var eventKey in eventsMap) {
         _loop(eventKey);
       }
+
+      ;
+    }
+  }, {
+    key: "mapRegions",
+    value: function mapRegions(fragment) {
+      var regionsMap = this.regionsMap();
+
+      for (var key in regionsMap) {
+        var selector = regionsMap[key];
+        var element = fragment.querySelector(selector);
+
+        if (element) {
+          this.regions[key] = element;
+        }
+      }
+
+      ;
     }
   }, {
     key: "render",
@@ -199,6 +223,7 @@ var View = /*#__PURE__*/function () {
       var templateElement = document.createElement('template');
       templateElement.innerHTML = this.template();
       this.bindEvents(templateElement.content);
+      this.mapRegions(templateElement.content);
       this.parent.append(templateElement.content);
     }
   }]);
@@ -207,6 +232,7 @@ var View = /*#__PURE__*/function () {
 }();
 
 exports.View = View;
+;
 },{}],"src/views/UserForm.ts":[function(require,module,exports) {
 "use strict";
 
@@ -5013,7 +5039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59590" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52216" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
